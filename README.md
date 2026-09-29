@@ -664,6 +664,40 @@ at startup. It does not:
   CSV.
 * The app never calls `src.train`; training is a separate, explicit command.
 
+### Deploying to Streamlit Community Cloud
+
+This section is the verified setup for a free Community Cloud deployment. **The
+hosted app has not been created yet** - see the status note at the end.
+
+Sign in at [share.streamlit.io](https://share.streamlit.io), choose **Create
+app**, then **Yup, I have an app**, and enter:
+
+| Field | Value |
+| --- | --- |
+| Repository | `an-codes1/PRODIGY_ML_02` |
+| Branch | `main` |
+| Main file path | `app.py` |
+| App URL (subdomain) | `amber-prodigy-ml-02` |
+| Python version | `3.12` (also the Community Cloud default) |
+| Secrets | none needed |
+
+Python 3.12 is the version the committed artifacts were fitted with, and it is
+the version the `.github/workflows/ci.yml` workflow tests on, so the deployed
+runtime matches what the tests already cover. There are no secrets to enter: the
+app reads only committed files.
+
+The resulting URL will be:
+
+```
+https://amber-prodigy-ml-02.streamlit.app
+```
+
+**Status: not yet deployed.** Creating the app needs a signed-in browser session
+and a GitHub authorisation, neither of which can be done from a terminal. The
+repository is published and CI-verified, so the remaining work is the few clicks
+above. Once the URL is live, this section should be updated with the confirmed
+link and the checks in §9 extended with what was verified on the hosted app.
+
 ---
 
 ## 11. Security notes
