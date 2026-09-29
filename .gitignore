@@ -1,0 +1,45 @@
+# ---- secrets and local configuration -------------------------------------
+.env
+*.pem
+.streamlit/secrets.toml
+
+# ---- virtual environments and caches -------------------------------------
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.ruff_cache/
+.mypy_cache/
+
+# ---- logs -----------------------------------------------------------------
+*.log
+logs/
+
+# ---- raw dataset and downloaded archives ---------------------------------
+# The Kaggle page lists the licence as "Other (specified in description)", so
+# the CSV is not redistributed with this repository. Download it yourself from
+# https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python
+data/*.csv
+data/*.csv.*
+data/*.zip
+data/*.tar*
+!data/.gitkeep
+
+# ---- row-level results ---------------------------------------------------
+# outputs/customer_segments.csv holds one row per customer, so it is treated as
+# the dataset itself and stays local. The aggregate CSVs (cluster_summary.csv,
+# k_selection_metrics.csv) are committed because they contain no row-level data.
+outputs/customer_segments.csv
+outputs/figures/
+outputs/*.joblib
+!outputs/cluster_summary.csv
+!outputs/k_selection_metrics.csv
+
+# ---- OS noise ------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini

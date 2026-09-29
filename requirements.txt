@@ -1,0 +1,10 @@
+# Runtime dependencies for PRODIGY_ML_02 (CPU only, no paid services).
+# Versions are the ones this project was built and tested against.
+# Install with:  python -m pip install -r requirements.txt
+
+pandas==3.0.6
+numpy==2.5.3
+scikit-learn==1.9.1
+matplotlib==3.11.2
+streamlit==1.64.0
+joblib==1.6.0

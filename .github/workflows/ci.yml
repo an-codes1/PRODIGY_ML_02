@@ -1,0 +1,45 @@
+name: CI
+
+# Dataset-independent by design. The raw CSV is not redistributed with this
+# repository, so these checks never download it: the committed fitted artifacts
+# are enough to exercise the app, the predictor and the cluster geometry.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# The job only needs to read the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Tests and dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          # Matches the interpreter the committed artifacts were produced with.
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+
+      - name: Test suite
+        run: python -m pytest -q
+
+      - name: Dependency audit
+        run: python -m pip_audit -r requirements.txt

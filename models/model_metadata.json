@@ -1,0 +1,278 @@
+{
+  "artifact_schema_version": 1,
+  "project_title": "PRODIGY_ML_02 - Customer Segmentation Using K-means",
+  "app_title": "Customer Segmentation Explorer",
+  "trained_at_utc": "2026-09-27T09:54:30+00:00",
+  "task": "Prodigy InfoTech Machine Learning Task 02",
+  "objective": "Group retail customers by spending behaviour using K-means clustering.",
+  "dataset": {
+    "title": "Mall Customer Segmentation Data",
+    "url": "https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python",
+    "author": "Vijay Choudhary (Kaggle user: vjchoudhary7)",
+    "license": "Other (specified in description) - the Kaggle dataset page does not state a standard open licence, so the raw CSV is treated as not redistributable.",
+    "acknowledgement": "The dataset page credits the file to the Udemy 'Machine Learning A-Z' course and describes it as created for learning customer segmentation concepts (market basket analysis). Spending Score is described on the source page as a value the mall owner assigns to a customer from their own parameters, customer behaviour and purchasing data.",
+    "limitation": "This file is a customer-level profile table. It has one row per membership customer and no dated transactions, so it cannot tell us what a customer bought, how often, or when they last bought. Spending Score is a single assigned summary number, not a measured purchase history.",
+    "local_file": "Mall_Customers.csv",
+    "sha256": "416a4f62a8f33841a16e1db5297f0e05d3b65b05e73632cedae58e739e1e1f77",
+    "cleaning": {
+      "rows_total": 200,
+      "rows_kept": 200,
+      "rows_excluded": 0,
+      "exact_duplicate_rows_removed": 0,
+      "duplicate_feature_pairs": 4,
+      "exclusion_reasons": {},
+      "columns_present": [
+        "CustomerID",
+        "Gender",
+        "Age",
+        "Annual Income (k$)",
+        "Spending Score (1-100)"
+      ],
+      "missing_required_columns": [],
+      "feature_ranges": {
+        "Annual Income (k$)": {
+          "min": 15.0,
+          "max": 137.0,
+          "mean": 60.56
+        },
+        "Spending Score (1-100)": {
+          "min": 1.0,
+          "max": 99.0,
+          "mean": 50.2
+        }
+      }
+    }
+  },
+  "features": {
+    "columns": [
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "units": {
+      "Annual Income (k$)": "k$ (thousands, as labelled by the dataset source)",
+      "Spending Score (1-100)": "score from 1 to 100 (assigned by the dataset source)"
+    },
+    "labels": {
+      "Annual Income (k$)": "Annual income (k$)",
+      "Spending Score (1-100)": "Spending score (1-100)"
+    },
+    "excluded_from_model": [
+      "CustomerID",
+      "Gender",
+      "Age"
+    ],
+    "exclusion_reason": "CustomerID is an identifier, not behaviour. Gender and Age are demographics; leaving them out keeps the groups defined purely by income and spending score.",
+    "training_rows": 200,
+    "training_ranges": {
+      "Annual Income (k$)": {
+        "min": 15.0,
+        "max": 137.0,
+        "mean": 60.56
+      },
+      "Spending Score (1-100)": {
+        "min": 1.0,
+        "max": 99.0,
+        "mean": 50.2
+      }
+    }
+  },
+  "model": {
+    "algorithm": "KMeans",
+    "library": "scikit-learn",
+    "pipeline_steps": [
+      "StandardScaler",
+      "KMeans"
+    ],
+    "random_state": 42,
+    "n_init": 20,
+    "selected_k": 5,
+    "k_search_range": [
+      1,
+      10
+    ],
+    "selection_rule": "Highest measured silhouette score among valid candidates k=2..10 in the standardised feature space; exact ties go to the smaller k.",
+    "inertia": 65.56840815571681,
+    "silhouette": 0.5546571631111091,
+    "silhouette_meaning": "Clustering metric between -1 and 1, not a prediction accuracy.",
+    "candidates": [
+      {
+        "k": 1,
+        "n_clusters_found": 1,
+        "inertia": 400.0,
+        "silhouette": null,
+        "silhouette_valid": false,
+        "note": "silhouette needs at least 2 clusters"
+      },
+      {
+        "k": 2,
+        "n_clusters_found": 2,
+        "inertia": 269.6910121927639,
+        "silhouette": 0.3212707813918878,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 3,
+        "n_clusters_found": 3,
+        "inertia": 157.70400815035947,
+        "silhouette": 0.46658474419000145,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 4,
+        "n_clusters_found": 4,
+        "inertia": 108.92131661364355,
+        "silhouette": 0.4939069237513199,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 5,
+        "n_clusters_found": 5,
+        "inertia": 65.56840815571681,
+        "silhouette": 0.5546571631111091,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 6,
+        "n_clusters_found": 6,
+        "inertia": 55.057348270385994,
+        "silhouette": 0.5398800926790663,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 7,
+        "n_clusters_found": 7,
+        "inertia": 44.86475569922557,
+        "silhouette": 0.5281492781108291,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 8,
+        "n_clusters_found": 8,
+        "inertia": 37.14811697229111,
+        "silhouette": 0.4567208019716266,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 9,
+        "n_clusters_found": 9,
+        "inertia": 32.39226763033116,
+        "silhouette": 0.4570853966942764,
+        "silhouette_valid": true,
+        "note": ""
+      },
+      {
+        "k": 10,
+        "n_clusters_found": 10,
+        "inertia": 29.685787841036316,
+        "silhouette": 0.43621223292728883,
+        "silhouette_valid": true,
+        "note": ""
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "customers": 81,
+      "share_of_customers": 0.405,
+      "centroid_income_k": 55.2963,
+      "centroid_spending_score": 49.5185,
+      "mean_income_k": 55.2963,
+      "mean_spending_score": 49.5185,
+      "description": "mid-range income, mid-range spending score",
+      "color": "#1f77b4"
+    },
+    {
+      "cluster_id": 1,
+      "customers": 39,
+      "share_of_customers": 0.195,
+      "centroid_income_k": 86.5385,
+      "centroid_spending_score": 82.1282,
+      "mean_income_k": 86.5385,
+      "mean_spending_score": 82.1282,
+      "description": "higher income, higher spending score",
+      "color": "#ff7f0e"
+    },
+    {
+      "cluster_id": 2,
+      "customers": 22,
+      "share_of_customers": 0.11,
+      "centroid_income_k": 25.7273,
+      "centroid_spending_score": 79.3636,
+      "mean_income_k": 25.7273,
+      "mean_spending_score": 79.3636,
+      "description": "lower income, higher spending score",
+      "color": "#2ca02c"
+    },
+    {
+      "cluster_id": 3,
+      "customers": 35,
+      "share_of_customers": 0.175,
+      "centroid_income_k": 88.2,
+      "centroid_spending_score": 17.1143,
+      "mean_income_k": 88.2,
+      "mean_spending_score": 17.1143,
+      "description": "higher income, lower spending score",
+      "color": "#d62728"
+    },
+    {
+      "cluster_id": 4,
+      "customers": 23,
+      "share_of_customers": 0.115,
+      "centroid_income_k": 26.3043,
+      "centroid_spending_score": 20.913,
+      "mean_income_k": 26.3043,
+      "mean_spending_score": 20.913,
+      "description": "lower income, lower spending score",
+      "color": "#9467bd"
+    }
+  ],
+  "segment_names": {
+    "C0": "mid-range income, mid-range spending score",
+    "C1": "higher income, higher spending score",
+    "C2": "lower income, higher spending score",
+    "C3": "higher income, lower spending score",
+    "C4": "lower income, lower spending score"
+  },
+  "cluster_colors": {
+    "C0": "#1f77b4",
+    "C1": "#ff7f0e",
+    "C2": "#2ca02c",
+    "C3": "#d62728",
+    "C4": "#9467bd"
+  },
+  "interpretation_notes": [
+    "k was chosen inside the tested range 1..10; it is a practical choice, not a discovered truth.",
+    "The elbow curve is supporting evidence, not the selection rule.",
+    "There are no ground-truth segment labels, so no accuracy score exists.",
+    "All metrics are descriptive and measured on the fitted dataset. This is not held-out supervised validation.",
+    "Cluster ids are arbitrary identifiers, not a ranking of value.",
+    "Centroid descriptions are relative to this dataset's means and make no claim about age, gender, loyalty or purchase history.",
+    "A 2D cluster boundary is an algorithmic grouping, not proof of a real customer category."
+  ],
+  "dependencies": {
+    "python": "3.12.10",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "joblib": "1.6.0",
+    "streamlit": "1.64.0"
+  },
+  "deployment": {
+    "row_level_data": "Not published. The Kaggle dataset page lists its licence as 'Other (specified in description)', so the raw CSV and any chart that reproduces individual customer coordinates are kept local. The app draws an aggregate binned view from segment_footprint.json.",
+    "published_artifacts": [
+      "kmeans_pipeline.joblib",
+      "model_metadata.json",
+      "segment_footprint.json"
+    ],
+    "training_at_startup": false
+  }
+}

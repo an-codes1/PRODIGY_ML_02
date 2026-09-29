@@ -1,0 +1,31 @@
+# Streamlit settings for PRODIGY_ML_02.
+# Keys used below are the supported names in Streamlit 1.64.
+
+[server]
+# Run headless, with no interactive start-up banner, which is what a hosted
+# container needs.
+headless = true
+
+# Keep the cross-site protections on. These are Streamlit's defaults and are
+# left explicit so nobody disables them by accident.
+enableXsrfProtection = true
+enableCORS = true
+xsrfCookieSameSite = "lax"
+
+# The app does not need to serve a static/ folder. Keeping this off means no
+# extra files are exposed over HTTP.
+enableStaticServing = false
+
+# The app has no file upload, so this cap is only a safety net.
+maxUploadSize = 1
+
+[browser]
+# No usage telemetry.
+gatherUsageStats = false
+
+[theme]
+primaryColor = "#1f77b4"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#1a1a1a"
+font = "sans serif"

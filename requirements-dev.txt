@@ -1,0 +1,19 @@
+# Development and notebook dependencies.
+# These are NOT needed to serve the app, which is why they are kept out of
+# requirements.txt.
+# Install with:  python -m pip install -r requirements-dev.txt
+
+-r requirements.txt
+
+# Test suite (includes Streamlit AppTest)
+pytest==9.1.1
+
+# Dependency vulnerability check used before any deployment
+pip-audit==2.10.1
+
+# Notebook execution and the walkthrough in notebooks/
+jupyterlab==4.6.4
+notebook==7.6.3
+ipykernel==7.3.0
+nbformat==5.11.1
+nbconvert==7.17.1
